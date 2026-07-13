@@ -10,6 +10,10 @@
 
 The issue is that there doesn't exist a max_chunks variable in the hybrid retrieval step. When there is a large portfolio, there may be a lot of chunks that are returned, so it can lead to the retrieval returning a lot of results, that can overflow the context window of the LLm leading to weak answers due to truncation. This is located in rag/retriever/hybrid.py and rag/retriever/vector_store.py. Adding the max_chunks should lead to the LLM focusing on the top k chunks, that should give meaninful context without overflowing the context window. This should be able to be tweaked as a config so that it can be properly tuned.
 
+**Is This Issue Right for Me?**
+
+As I don't have as much experience in open source contributions, this issue fits well with my experience. Additionally, it helps that it is a simple fix that can fit into my schedule. 
+
 **Branch name:** feat/29-add-max-chunks
 
 **Setup confirmation:** [X] App runs locally at localhost:5173
