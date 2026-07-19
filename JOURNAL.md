@@ -21,7 +21,7 @@ The issue is that there doesn't exist a test that doesn't test the full RAG pipe
 
 ## Week 8 — Reproduction & solution planning
 
-**Reproduction commit link:** [link to commit documenting the reproduced issue]
+**Reproduction commit link:** https://github.com/cpicazo8304/pathreview/commit/857423dbc7b397b01e09cf62afe3ebcaa81f1501 
 
 **Reproduction summary:**
 Ran
@@ -38,9 +38,7 @@ Additionally, the only tests are unit tests (as said in issue #38), that test in
 - test_prompt_templates.py
 - test_relevance_scorer.py
 
-**PLAN.md link:** [link to PLAN.md in your fork]
-
-**Walkthrough video (recommended):** [link to your Loom video, ≤2 min — shared for early feedback]
+**PLAN.md link:** [\[link to PLAN.md in your fork\]](https://github.com/cpicazo8304/pathreview/blob/test/38-add-rag-integration-test/PLAN.md)
 
 **Blockers or open questions:**
 
