@@ -9,6 +9,7 @@ from ingestion.embeddings.batch_processor import BatchEmbeddingProcessor
 from ingestion.embeddings.provider import MockEmbeddingProvider
 from ingestion.parsers.readme_parser import ReadmeParser
 from ingestion.parsers.resume_parser import ResumeParser
+from rag.evaluator.relevance_scorer import RelevanceScorer
 from rag.retriever.hybrid import HybridRetriever
 from rag.retriever.keyword_search import KeywordSearcher
 from rag.retriever.vector_store import VectorStore
@@ -116,5 +117,36 @@ Python, FastAPI, PostgreSQL, AWS, Docker
     # hybrid retriever does not exceed the specified max_chunks
     assert len(results) <= 3
 
+    # Check #7: Make sure the fields of each result are present and valid
+    for result in results:
+        assert "text" in result
+        assert "metadata" in result
+        assert "score" in result
+        assert "id" in result
+        assert isinstance(result["score"], float)
+        assert 0 <= result["score"] <= 1
+
     # Check #8: Ensure that the results contain relevant chunks
     # based on the query
+    relevance_scorer = RelevanceScorer()
+    for result in results:
+        score = relevance_scorer.score(query, [result])
+        assert score > 0.0
+
+    # # Generation step
+    # config = ReviewConfig(
+    #     api_key=settings.openrouter_api_key,
+    #     base_url=settings.openrouter_base_url,
+    #     model=settings.openrouter_model,
+    # )
+
+    # review_generator = ReviewGenerator(config)
+    # review_section = review_generator.generate_section(
+    #     section_name="skills_feedback",
+    #     context_chunks=results,
+    #     profile_data={"github_username": "demo-user", "projects": []},
+    # )
+
+    # # Check #9: Ensure that the generated review section has content
+
+    # # Parse the generated review output
