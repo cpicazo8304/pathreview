@@ -1,14 +1,17 @@
 """Tests for the RAG pipeline."""
 
-# mypy: disable-error-code="no-untyped-def"
+from pathlib import Path
 
 import pytest
+from pathreview.core.config import settings
+from pathreview.rag.generator.review_generator import ReviewConfig, ReviewGenerator
 
 from ingestion.chunking.strategy_selector import StrategySelector
 from ingestion.embeddings.batch_processor import BatchEmbeddingProcessor
 from ingestion.embeddings.provider import MockEmbeddingProvider
 from ingestion.parsers.readme_parser import ReadmeParser
 from ingestion.parsers.resume_parser import ResumeParser
+from rag.evaluator.faithfulness_checker import FaithfulnessChecker
 from rag.evaluator.relevance_scorer import RelevanceScorer
 from rag.retriever.hybrid import HybridRetriever
 from rag.retriever.keyword_search import KeywordSearcher
@@ -16,7 +19,7 @@ from rag.retriever.vector_store import VectorStore
 
 
 @pytest.mark.integration
-def test_rag_pipeline(tmp_path):
+def test_rag_pipeline(tmp_path: Path) -> None:
     """Test the ingestion and retrieval flow with sample README and resume content."""
     vector_store_instance = VectorStore(persist_dir=str(tmp_path / "chromadb"))
     collection = vector_store_instance.get_collection("rag_test_collection")
@@ -133,20 +136,27 @@ Python, FastAPI, PostgreSQL, AWS, Docker
         score = relevance_scorer.score(query, [result])
         assert score > 0.0
 
-    # # Generation step
-    # config = ReviewConfig(
-    #     api_key=settings.openrouter_api_key,
-    #     base_url=settings.openrouter_base_url,
-    #     model=settings.openrouter_model,
-    # )
+    # Generation step
+    config = ReviewConfig(
+        api_key=settings.openrouter_api_key,
+        base_url=settings.openrouter_base_url,
+        model=settings.openrouter_model,
+    )
 
-    # review_generator = ReviewGenerator(config)
-    # review_section = review_generator.generate_section(
-    #     section_name="skills_feedback",
-    #     context_chunks=results,
-    #     profile_data={"github_username": "demo-user", "projects": []},
-    # )
+    review_generator = ReviewGenerator(config)
+    review_section = review_generator.generate_section(
+        section_name="skills_feedback",
+        context_chunks=results,
+        profile_data={"github_username": "demo-user", "projects": []},
+    )
 
-    # # Check #9: Ensure that the generated review section has content
+    # Check #9: Ensure the fields of the generated review section are present and valid
+    assert review_section.section_name == "skills_feedback"
+    assert review_section.confidence == 0.6
+    assert len(review_section.suggestions) == 0
+    assert review_section.content
 
-    # # Parse the generated review output
+    # Check #10: Check for faithfulness of the generated review section
+    faithfulness_checker = FaithfulnessChecker()
+    is_faithful = faithfulness_checker.check(review_section.content, results)
+    assert is_faithful
