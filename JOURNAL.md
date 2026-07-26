@@ -43,3 +43,41 @@ Additionally, the only tests are unit tests (as said in issue #38), that test in
 **Blockers or open questions:**
 
 Would a test of the RAG pipeline be a combination of the unit tests? Like having certain checkpoints to check how the RAG pipeline is doing? If the certain parts of the pipeline are doing what they are supposed to be doing?
+
+
+## Week 9 — Solution building & PR submission
+
+### Check-in 1 (mid-week)
+
+**Current progress:**
+[What have you implemented so far? Which sub-tasks from PLAN.md are done?]
+
+- Add ingestion to RAG pipeline to check this section of the RAG pipeline. 
+
+**Next steps:**
+[What are you working on for the rest of the week?]
+
+- Add in the retrieval step and generation step to test. 
+
+**Blockers:**
+[Anything slowing you down? Or leave blank.]
+
+- There is a lot of formatting errors in the other files that I had not touched. This is from the original repository and some may be issues that students could be fixing up, but it is affecting my test in turn. 
+
+---
+
+### Check-in 2 (end of week)
+
+**PR link:** [link to your submitted pull request]
+
+**Branch:** [the branch name you worked on, e.g. `fix/123-short-description`]
+
+**What you built:**
+[1–3 sentences summarizing what your fix does and how it works]
+
+**Tests added or updated:**
+[Which test files did you touch? What do they cover?]
+
+**Self-review confirmation:** [ ] make check passes  [ ] make test-unit passes
+
+**Draft PR feedback received from:** [name or Slack handle, or "none"]
