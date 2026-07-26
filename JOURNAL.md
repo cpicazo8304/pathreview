@@ -68,16 +68,18 @@ Would a test of the RAG pipeline be a combination of the unit tests? Like having
 
 ### Check-in 2 (end of week)
 
-**PR link:** [link to your submitted pull request]
+**PR link:** 
 
-**Branch:** [the branch name you worked on, e.g. `fix/123-short-description`]
+**Branch:** test/38-add-rag-integration-test
 
 **What you built:**
 [1–3 sentences summarizing what your fix does and how it works]
+My fix adds in a test for the integration of the RAG pipeline. It goes through ingestion (testing parsing, chunking, and embedding) of documents that will be added to an example vector store, retrieval of chunks in relation to a query, and generation of an answer according to context + query. The intregation test is able to fully check each stage.
 
 **Tests added or updated:**
 [Which test files did you touch? What do they cover?]
+Added integration test: tests/integration/test_rag_pipeline.py
 
-**Self-review confirmation:** [ ] make check passes  [ ] make test-unit passes
+**Self-review confirmation:** [X] make check passes  [X] make test-unit passes
 
-**Draft PR feedback received from:** [name or Slack handle, or "none"]
+**Draft PR feedback received from:** none
