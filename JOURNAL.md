@@ -68,12 +68,11 @@ Would a test of the RAG pipeline be a combination of the unit tests? Like having
 
 ### Check-in 2 (end of week)
 
-**PR link:** 
+**PR link:** https://github.com/cpicazo8304/pathreview/blob/test/38-add-rag-integration-test/PR.md 
 
 **Branch:** test/38-add-rag-integration-test
 
 **What you built:**
-[1–3 sentences summarizing what your fix does and how it works]
 My fix adds in a test for the integration of the RAG pipeline. It goes through ingestion (testing parsing, chunking, and embedding) of documents that will be added to an example vector store, retrieval of chunks in relation to a query, and generation of an answer according to context + query. The intregation test is able to fully check each stage.
 
 **Tests added or updated:**
