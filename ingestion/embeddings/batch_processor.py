@@ -1,8 +1,9 @@
+from typing import Any
+
 import structlog
 
 from ..chunking.base import Chunk
 from .provider import EmbeddingProvider
-
 
 logger = structlog.get_logger()
 
@@ -12,7 +13,7 @@ class BatchEmbeddingProcessor:
 
     BATCH_SIZE = 100
 
-    def __init__(self, embedding_provider: EmbeddingProvider, vector_db):
+    def __init__(self, embedding_provider: EmbeddingProvider, vector_db: Any) -> None:
         """
         Initialize the batch processor.
 
@@ -64,10 +65,13 @@ class BatchEmbeddingProcessor:
             try:
                 # Generate embeddings
                 embeddings = self.embedding_provider.embed(texts)
-                logger.info("Generated embeddings for batch", embedding_count=len(embeddings))
+                logger.info(
+                    "Generated embeddings for batch",
+                    embedding_count=len(embeddings),
+                )
 
                 # Store in vector DB
-                for chunk, embedding in zip(batch, embeddings):
+                for chunk, embedding in zip(batch, embeddings, strict=False):
                     try:
                         embedding_id = self._store_embedding(chunk, embedding)
                         results.append((chunk, embedding_id))
