@@ -82,3 +82,39 @@ Added integration test: tests/integration/test_rag_pipeline.py
 **Self-review confirmation:** [X] make check passes  [X] make test-unit passes
 
 **Draft PR feedback received from:** none
+
+
+## Week 10 — Iteration & reflection
+
+### Reviewer feedback
+
+**Feedback received:** [ ] Yes  [X] No — still awaiting review
+
+**Summary of feedback:**
+No review came in.
+
+**How you responded:**
+
+
+---
+
+### Reflection
+
+**What was harder than you expected?**
+
+I honestly thought I would only use code from the rag directory but didn't realize that I needed to use the ingestion directory to prepare an example docs in the vector store. I probably didn't need to do checks for the ingestion since I only needed to test the RAG portion, but still added it in.
+
+**What did you learn about working in a large codebase?**
+
+I learned that it doesn't have to be difficult at first. You can take steps to making large contributions. You can start with something as simple as fixing syntax or addings docs to testing large pipelines or adding in new features. There is a lot more reading through files, writing down notes, and figuring out what connects to what for a better understanding of the codebase. That is because the code is already set rather than me buildin a project from scratch. You need to have a lot of considerations such as how will your code affect the rest or what syntax you have to follow to match with the rest of the code.
+
+**How did AI tools help — and where did they fall short?**
+It was mainly used for understanding certain parts of the code. I knew what connected to what but wanted to understand how each part worked. I also used it to fix certain git errors that I didn't understand.
+
+**What would you do differently if you started over?**
+
+I would definitely look over the other directories briefly to see what I could use. I would probably spend two days to just focus on understanding the directory (maybe more if needed). This would make the solution planning much faster.
+
+**What are you most proud of from this module?**
+
+I am the most proud of developing something as large as a full integration test. I have less experience than most in open source contribution but wanted to challenge myself with a tier-2 issue. Completing this issue (even with no review) adds to my confidence in trying out new issues in the future. 
