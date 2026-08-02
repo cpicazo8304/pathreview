@@ -109,7 +109,7 @@ I honestly thought I would only use code from the rag directory but didn't reali
 I learned that it doesn't have to be difficult at first. You can take steps to making large contributions. You can start with something as simple as fixing syntax or addings docs to testing large pipelines or adding in new features. There is a lot more reading through files, writing down notes, and figuring out what connects to what for a better understanding of the codebase. That is because the code is already set rather than me buildin a project from scratch. You need to have a lot of considerations such as how will your code affect the rest or what syntax you have to follow to match with the rest of the code.
 
 **How did AI tools help — and where did they fall short?**
-It was mainly used for understanding certain parts of the code. I knew what connected to what but wanted to understand how each part worked. I also used it to fix certain git errors that I didn't understand.
+It was mainly used for understanding certain parts of the code. I knew what connected to what but wanted to understand how each part worked. Where it didn't do well was when I asked it to help with git errors, but it didn't help as much or was very vague.
 
 **What would you do differently if you started over?**
 
